@@ -1,0 +1,5 @@
+To open C#   , cd folder  , mono file.name.cs
+To open Ruby  , ruby filename.rb
+to open Python , python3 filename.py
+To open Haskell -to compile the file(program.hs) => ghc -o program program.hs   and then ./program to start it
+To open Java file : 1st javac fileName.java (to compile it) , and then > java  fileName jar fileName
