@@ -1,0 +1,19 @@
+oreder_1
+Ivan - 12
+Petkan - 13
+Petq - 14
+
+order_2
+Dragan - 12
+Shotokan - 14
+Armagan - 13
+
+order_3
+Pesho - 1
+Petko - 2
+Plamen - 3orders_2014_10_20_18_00_21
+{'Ivan': 11, 'Petkan': 23}
+
+orders_2014_10_20_18_01_42
+Petkan
+Ivan

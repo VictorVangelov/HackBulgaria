@@ -1,0 +1,2 @@
+INDEX VERSION 1.126+/home/shosho/ProgrammingSHits/Programming102v2/Core-Java-2/.metadata/.plugins/org.eclipse.jdt.core
+2801497351.index

@@ -1,0 +1,5 @@
+ 
+1.    ssh root@ip-to ot mail-a
+2. how to exit vim : esc :wq
+3: poprincip porta bachka na 80 
+4.  v app.run(host=0.0.0.0, port=80)
