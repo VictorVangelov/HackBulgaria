@@ -1,0 +1,12 @@
+package com.hackbulgaria.corejava.firstTask;
+
+public class tests {
+	Pair<Integer, String> first = new Pair(1,"asd");
+	Pair<Integer, String> secound = new Pair(1,"asd");
+	Pair<Double, String> third = new Pair(1,"asd");
+	Pair<Float, String> fourth = new Pair(1,"asd");
+	public static void main(String[] args) {
+		
+		System.out.println(first.);
+	}
+}

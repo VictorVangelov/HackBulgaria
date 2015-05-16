@@ -1,0 +1,153 @@
+package com.hackbulgaria.fileruler;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.http.client.HttpResponseException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.google.gson.JsonObject;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+
+public class ImageFactory extends Thread {
+
+	static String name;
+	static Path path;
+	static URL url;
+	HashMap<String, Double> imaggaTags = new HashMap<String, Double>();
+	ArrayList<String> fileRulerTags = new ArrayList<String>();
+	JsonObject imaggaJSON;
+	static String defaultPicDBFolder = "/home/shosho/Downloads/FileRulerPicDB/";
+	String tag = "";
+	double temp = 0;
+	double confidencee;
+	Image tempa;
+	ImageCollection imageCollection=new ImageCollection();
+
+	public static void main(String[] args) throws IOException {
+		generateAllImages();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(ImageCollection.imageCollection.size());
+		
+	}
+
+	private static String getImaggaResponce(String url)
+			throws HttpResponseException, IOException {
+		String imaggaEndPoint = "http://api.imagga.com/v1/tagging?url=";
+		com.mashape.unirest.http.HttpResponse<String> response;
+		try {
+			response = Unirest
+					.get(imaggaEndPoint.concat(url))
+					.header("accept", "application/json")
+					.header("authorization",
+							"Basic YWNjX2YzYTVkYTc4N2ZmZTZmMDo0MmIwNWZhMTcwNjlhOGMzMDgwMjkyNDBkNjkwODU0Mw==")
+					.asString();
+			return response.getBody();
+		} catch (UnirestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+
+	}
+
+	public ImageFactory(String filePathAndName) {
+		super(filePathAndName);
+	}
+
+	public static String readFrom(File inputFile) throws IOException {
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br = new BufferedReader(new FileReader(inputFile));
+		String currentLineOfFile;
+		while ((currentLineOfFile = br.readLine()) != null) {
+			sb.append(currentLineOfFile);
+		}
+		br.close();
+		return sb.toString();
+	}
+
+	@Override
+	public void run() {
+		// System.out.println(getName());
+		name = FilenameUtils.getBaseName(getName());
+		String ext = FilenameUtils.getExtension(getName());
+		name += "." + ext;
+		path = Paths.get((defaultPicDBFolder + name));
+		try {
+			if (!getImaggaResponce(getName()).equals("")) {
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				String jsonContent = getImaggaResponce(getName());
+				JSONObject obj = new JSONObject(jsonContent);
+				JSONArray arr = obj.getJSONArray("results");
+				JSONObject imaggaInformation = arr.getJSONObject(0);
+				JSONArray tagsAndConfidence = (JSONArray) imaggaInformation
+						.get("tags");
+				for (int i = 0; i < tagsAndConfidence.length() - 1; i++) {
+					try {
+						tag = tagsAndConfidence.getJSONObject(i).getString(
+								"tag");
+						temp =  tagsAndConfidence.getJSONObject(i).getDouble("confidence");
+
+					} catch (ClassCastException e) {
+						confidencee = 0;
+					}
+					imaggaTags.put(tag, confidencee);
+				}
+				url = new URL(getName());
+				//createFileInHDD(getName());
+				 tempa = new Image(url, path, name, imaggaTags);
+				System.out.println(tempa.url);
+				imageCollection.add(tempa);
+			}
+
+		} catch (JSONException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+
+	static void generateAllImages() throws IOException {
+		File allUrls = new File("urls.txt");
+		String allURLS[] = readFrom(allUrls).split(";");
+		for (String pathToFile : allURLS) {
+			new ImageFactory(pathToFile).start();
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+}

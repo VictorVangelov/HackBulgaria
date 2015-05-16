@@ -1,0 +1,16 @@
+package CourseTasks;
+
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class Counter {
+
+	static AtomicInteger value = new AtomicInteger(0);
+	protected synchronized void increment(){
+		value.incrementAndGet();
+	}
+	protected static int getValue(){
+		return value;
+	}
+}

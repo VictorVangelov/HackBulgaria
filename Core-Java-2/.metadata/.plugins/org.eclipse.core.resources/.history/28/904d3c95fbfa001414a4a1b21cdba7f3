@@ -1,0 +1,30 @@
+package CourseTasks;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+import org.apache.http.client.fluent.Async;
+import org.apache.http.client.fluent.Content;
+import org.apache.http.client.fluent.Request;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.concurrent.FutureCallback;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+public class ContentGetter {
+	static URIBuilder builder;
+	
+	protected static  ConcurrentLinkedQueue<Content> hrefContainer;
+	
+	public void addNewURL(String webSite){
+		builder = new URIBuilder();
+		builder.setScheme("http")
+		
+	}
+	
+	
+
+}

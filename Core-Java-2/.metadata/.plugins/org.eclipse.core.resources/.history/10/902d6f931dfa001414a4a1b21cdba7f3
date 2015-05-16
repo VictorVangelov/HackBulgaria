@@ -1,0 +1,9 @@
+package CourseTasks;
+
+import java.util.Queue;
+
+public class BlockingQueue {
+	
+	Queue<String>myQueue = new Queue<String>();
+
+}

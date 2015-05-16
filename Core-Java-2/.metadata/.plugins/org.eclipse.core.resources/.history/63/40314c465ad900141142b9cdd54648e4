@@ -1,0 +1,66 @@
+package com.hackbulgaria.corejava.firstTask;
+
+
+public final class Pair<firstThing,secondThing>{
+	 private final firstThing first;
+	 private final secondThing secound;
+	
+	Pair(firstThing first, secondThing secound){
+		this.first = first;
+		this.secound = secound;
+		
+	}
+
+	public firstThing getFirst() {
+		return first;
+	}
+
+	public secondThing getSecound() {
+		return secound;
+	}
+
+	@Override
+	public int hashCode() {
+		return first.hashCode()^secound.hashCode();
+	}
+
+
+	public boolean equals(Pair pair) {
+		if (this.hashCode() == pair.hashCode()){return true;}
+		if (this.first == pair.first & this.secound == pair.secound){
+			return true;
+		}
+		if (pair == null) {
+			return false;
+		}
+		Pair<firstThing,secondThing> other = (Pair<firstThing, secondThing>) pair;
+		if (first == null) {
+			if (other.first != null)
+				return false;
+		}
+
+		if (secound == null) {
+			if (other.secound != null)
+				return false;
+		}
+		if (!(first.hashCode() == ((firstThing) other.first).hashCode())){
+			return false;
+		}
+		
+		
+		else if (!secound.equals((secondThing)other.secound))
+			return false;
+		
+		if (getClass() != pair.getClass()){
+			pair.first.getClass();
+			pair.secound.getClass();
+			return false;
+		}
+		return true;
+	}
+	
+	@Override
+	public String toString(){
+		return String.format("<%s ; %s>", this.first, this.secound);
+	}
+}

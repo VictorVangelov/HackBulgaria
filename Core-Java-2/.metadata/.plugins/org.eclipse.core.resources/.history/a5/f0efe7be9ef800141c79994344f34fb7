@@ -1,0 +1,9 @@
+package CourseTasks;
+
+public class Counter {
+
+	int value = 0;
+	proteced synchronized void increment(){
+		value++;
+	}
+}

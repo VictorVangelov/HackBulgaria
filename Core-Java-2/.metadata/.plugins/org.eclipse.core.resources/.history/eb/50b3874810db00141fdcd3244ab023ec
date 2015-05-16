@@ -1,0 +1,21 @@
+
+public class NumbersInUsernameException extends Exception{
+	
+
+	public NumbersInUsernameException(Exception causedBy) {
+		super("In NIUE(E) ",causedBy);
+		// TODO Auto-generated constructor stub
+	}
+	public NumbersInUsernameException(){
+		super("in NIUE()");
+	}
+	
+	public NumbersInUsernameException(String msg, Exception causedBy){
+		super(cause, causedBy);
+	}
+	static String cause = " contain numbers";
+	
+	
+
+
+}

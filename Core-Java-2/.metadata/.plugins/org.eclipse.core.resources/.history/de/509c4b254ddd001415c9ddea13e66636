@@ -1,0 +1,36 @@
+package executionOfReadmeTasks;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.nio.file.Path;
+
+public class FileUtils {
+	
+	
+	private FileUtils(){
+	}
+	static FileUtils fileUtilsCreator(){
+		return new FileUtils();
+	}
+	
+	
+	public String readFrom(String inputFileName){
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br = new BufferedReader(new FileReader(inputFileName));
+		String currentLineOfFile;
+		while((currentLineOfFile=br.readLine()) != null){
+			sb.append(currentLineOfFile);
+		}
+		return sb.toString();
+	}
+		
+
+		
+	
+	public String readFrom(Path pathToFile){
+		return null;
+		
+	}
+	
+
+}

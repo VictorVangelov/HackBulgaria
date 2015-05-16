@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;obj&apos; in &apos;taskImplementation.workingWithAPI.workWithApi(...)&apos; to &apos;allStudents&apos;&#x0A;- Original project: &apos;JSON-HTTPClient-REST&apos;&#x0A;- Original element: &apos;taskImplementation.workingWithAPI.workWithApi(String).obj&apos;&#x0A;- Renamed element: &apos;obj&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;obj&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;taskImplementation{workingWithAPI.java[workingWithAPI~workWithApi~QString;@obj!546!559!556!558!QJSONArray;!0!false" name="allStudents" references="true" stamp="1430567005707" version="1.0"/>
+</session>

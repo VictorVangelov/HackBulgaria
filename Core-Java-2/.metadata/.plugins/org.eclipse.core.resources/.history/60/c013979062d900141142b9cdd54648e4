@@ -1,0 +1,43 @@
+package com.hackbulgaria.corejava.firstTask;
+
+import java.awt.List;
+import java.util.ArrayList;
+
+public class StackImpl<SomeClass> implements IStack
+{
+
+	
+	ArrayList<SomeClass> stackImpl = new ArrayList<SomeClass>();
+
+	@Override
+	public void push(Object element) {
+		stackImpl.add(element);
+		
+	}
+
+	@Override
+	public Object pop() {
+		
+		Object element = stackImpl.get(stackImpl.size()-1);
+		return null;
+	}
+
+	@Override
+	public Integer length() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

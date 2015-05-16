@@ -1,0 +1,14 @@
+package executionOfReadmeTasks;
+
+public class FileUtils {
+	
+	
+	private FileUtils(){
+	}
+	static FileUtils fileUtilsCreator(){
+		return new FileUtils();
+	}
+	
+	
+
+}

@@ -1,0 +1,41 @@
+package com.hackbulgaria.corejava.firstTask;
+
+import java.awt.List;
+
+public class StackImpl implements IStack
+{
+	
+	
+	List stackImpl = new List();
+
+	@Override
+	public void push(Object element) {
+		stackImpl.add(element);
+		
+	}
+
+	@Override
+	public Object pop() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer length() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

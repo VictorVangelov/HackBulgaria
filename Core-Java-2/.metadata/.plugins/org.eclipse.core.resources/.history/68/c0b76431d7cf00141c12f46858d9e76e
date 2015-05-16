@@ -1,0 +1,451 @@
+package com.hackbulgaria.corejava;
+
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.lang.Math;
+import java.net.URLDecoder;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.stream.IntStream;
+import javax.imageio.ImageIO;
+
+
+
+
+public class Problems2Impl implements Problems2 {
+	
+	
+
+    public boolean isOdd(int number) {
+        if(number%2 == 0){
+            return false;
+        }
+        else return true;
+    }
+    
+
+    public boolean isPrime(int number) {
+        if(number%2 == 0 & number > 2){ return false; }
+        int numberSqrt = (int) Math.sqrt(number);
+        for(int  i=3; i<= numberSqrt+1; i++)
+        {
+            if (number % i == 0)
+            {
+                return false;
+            }            
+        }
+        return true;
+    }
+    public int min(int[] array) {
+        Arrays.sort(array);
+        return array[0];
+    }
+
+    public int kthMin(int k, int[] array) {
+        Arrays.sort(array);
+        try {
+            return array[k-1];
+        } catch (NullPointerException npe) {
+           System.out.println("There is no kth element in this array");
+           System.out.println(npe.getStackTrace());
+           return 0;
+        }
+        
+    }
+
+    public float getAverage(int[] array) {
+        //int sum = IntStream.of(a).sum();
+        float sum = 0.0f;
+        for(int i : array )
+        {
+            sum += i;
+        }
+        return sum/array.length;
+    }
+
+    public long Fact(long l){
+        long fact = 1;
+        while(l >1)
+        {
+            fact *= l;
+            l--;
+        }
+        return fact;
+    }
+    public long doubleFac(int n) {
+        
+        return Fact(Fact(n));
+    }
+
+    public long kthFac(int k, int n) {
+        long fact = n;
+        for (int i=0 ; i< k; i++)
+        {
+            fact = Fact(fact);
+        }        
+        return fact;
+    }
+
+    public int find_nod(int a, int b){
+    	if (a-b == 0)	{    return a;	}
+    	else find_nod(Math.abs(a-b), Math.min(a, b));
+    	return 0;
+    }
+
+    public long getSmallestMultiple(int upperBound) {
+/*    	int downBound = 1;
+    	if (downBound-upperBound == 0)	{    return upperBound;	}
+    	else find_nod(Math.abs(downBound-upperBound), Math.min(downBound, upperBound));
+    	*/
+    	return 0;
+    	
+
+    }
+    
+    public boolean isPalindrome(long N)
+    {
+    	String tempN = Long.toString(N);
+    	
+    	for(int i =0; i< tempN.length()/2 ; i++)
+    	{
+    		if(tempN.charAt(i) != tempN.charAt(tempN.length()-1-i))
+    		{
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+    @Override
+    public long getLargestPalindrome(long N) {
+    	long largestPolindrome = N-1;
+    	while(!isPalindrome(largestPolindrome))
+    	{
+    		largestPolindrome--;
+    	}
+    	return largestPolindrome;
+    	
+    }
+
+    @Override
+    public int[] histogram(short[][] image) {
+        int[] grayscaleHist = new int[256];
+        for(int row=0; row< image.length; row++)
+        {
+        	for(int cow=0; cow< image[row].length; cow++)
+        	{
+        		grayscaleHist[image[row][cow]]++;
+        	}
+        }
+        return grayscaleHist;
+    }
+
+    @Override
+    public int getOddOccurrence(int[] array)
+    {
+    	HashMap<Integer, Integer> occuurrenceNumbers = getOccurrenceOfNumbers(array);
+    	Iterator it = occuurrenceNumbers.entrySet().iterator();
+    	while(it.hasNext())
+    	{
+    		Map.Entry pair = (Map.Entry)it.next();
+    		if(!isOdd((int)(pair.getValue())))
+    		{
+    			return (int)pair.getKey();
+    		}
+    	}
+    	return -1;
+    	
+		
+        
+    }
+    
+    public HashMap<Integer, Integer> getOccurrenceOfNumbers(int[] array)
+    {
+    	HashMap<Integer , Integer> theHash = new HashMap<Integer, Integer>();
+		for (int i=0; i< array.length;i++)
+		{
+			if(theHash.containsKey(i))
+			{
+				theHash.put(array[i], theHash.get(i)+1);
+			}
+			else {theHash.put(array[i], 1);}
+		}
+		return theHash;
+    	
+    }
+
+    @Override
+    public long pow(int a, int b) {
+      if(b == 0)	{	return 1;	}
+      else if (b == 1)	 {	 return a;}
+      else if (b%2 ==0 ){	return pow(a*a, b/2);	}
+      else return a * pow(a*a, b/2);  
+      }
+
+    @Override
+    public long maximalScalarSum(int[] a, int[] b) {
+        Arrays.sort(a);
+        Arrays.sort(b);
+        long sum=0;
+        try {
+        	for( int i=0;i< a.length;i++)
+            {
+            	sum += a[i]*b[i];
+            }
+            return sum;			
+		} catch (NullPointerException npe) {
+			System.out.println("Arrays are with different dimension");
+			return -1;
+		}
+        
+    }
+
+    @Override
+    public int maxSpan(int[] array) {
+    	int counter = 1;
+    	int maxSpan = 0;
+
+    	for(int i=0;i<array.length;i++)
+    	{
+    		for (int j=i+1;j<array.length;j++)
+    		{
+    			if (array[i]==array[j])
+    			{
+    				counter= j-i+1;
+    				maxSpan=Math.max(maxSpan, counter);
+    			}
+    		}
+    	}
+    	return maxSpan;
+    }
+
+    @Override
+    public boolean canBalance(int[] array) {
+        
+    	int arrayOneSum, arrayTwoSum;
+    	for(int i=1;i<array.length;i++)
+    	{
+    		arrayOneSum = IntStream.of(Arrays.copyOfRange(array, 0, i)).sum();
+    		arrayTwoSum = IntStream.of(Arrays.copyOfRange(array, i, array.length)).sum();
+    		if(arrayOneSum == arrayTwoSum ) {return true;}
+    	}
+        return false;
+    }
+
+    @Override
+    public int[][] rescale(int[][] original, int newWidth, int newHeight) {
+        int[][] scaledImage = new int[newWidth][newHeight];
+        float xScale = getScaleRate(original.length, newWidth);
+        float yScale = getScaleRate(original[0].length, newHeight);
+        for(int i=0;i< newWidth;i++)
+        {
+        	for(int j=0;j<newHeight;j++)
+        	{
+        		scaledImage[i][j] = original[Math.round(i*xScale)][Math.round(j*yScale)];
+           	}
+        }        
+        return scaledImage;
+    }
+    
+    public float getScaleRate(int original,  int wanted)
+    {
+      	return original/wanted;
+    }
+    
+    
+    public int getRGBSum(Color c)
+    {
+    	int red = c.getRed();
+    	int blue = c.getBlue();
+    	int green = c.getGreen();
+    	return red+blue+green;
+    }
+
+    @Override
+    public String reverseMe(String argument) {
+        return new StringBuilder(argument).reverse().toString();
+    }
+
+    @Override
+    public String copyEveryChar(String input, int k) {
+        StringBuilder output = new StringBuilder();
+        char[] inputChars = input.toCharArray();       
+        for(char letter:inputChars)
+        {
+        	output.append(letter);
+        	for(int i=1; i< k;i++)
+        		{
+        		output.append(Character.toLowerCase(letter));
+        		}	
+        }
+        return output.toString();
+    }
+
+    @Override
+    public String reverseEveryWord(String arg) {
+        String[] words = arg.split("[\\W]+");
+        StringBuilder output = new StringBuilder();
+        for(String word : words)
+        {
+        	output.append(reverseMe(word)+" ");
+        }
+        return output.toString().trim();
+    }
+
+    @Override
+    public boolean isPalindrome(String argument) {    	
+    	char[] arrayOfN = argument.toCharArray();
+    	for(int i =0; i< argument.length()/2 ; i++)
+    	{
+    		if(arrayOfN[i] != ( arrayOfN[arrayOfN.length-1-i]))
+    		{
+    			return false;
+    		}
+    	}
+    	return true;
+        
+    }
+
+
+    @Override
+    public int getPalindromeLength(String input) {
+        int palindromeLength=0;
+        int starIndex = input.indexOf("*");
+        for (int i = 1; (starIndex-i)>=0 & (starIndex+i)<input.length(); i++)
+        {
+        	
+        	if(input.charAt(starIndex-i) != input.charAt(starIndex+i))
+       		{
+        		return palindromeLength;
+        	}
+        	else palindromeLength++;
+        }
+        return palindromeLength;
+    }
+
+    @Override
+    public int countOcurrences(String needle, String haystack) {
+        return haystack.split(needle, -1).length-1;
+    }
+
+    @SuppressWarnings("deprecation")
+	@Override
+    public String decodeURL(String input) {
+        return URLDecoder.decode(input);
+    }
+
+    @Override
+    public int sumOfNumbers(String input) {    	
+        //DA PITAM ZASHTO PODQVOLITE pyrviqt element e ""
+    
+
+		String[] parsedArray = input.split("[a-zA-Z]+");
+		int sum = 0;		
+		for(String item: parsedArray)			
+		{				
+			try {				
+				sum += Integer.parseInt(item);	
+			} catch (Exception e) {	}
+		}
+		return sum;
+    }
+
+    @Override
+    public boolean areAnagrams(String A, String B) {
+    	StringBuilder sbB = new StringBuilder(B);
+        if(A.length() == B.length())        
+        {
+        	for(int i=0; i< A.length();i++)
+        	{
+        		
+        		if(B.contains((A.charAt(i)+"")))
+        		{
+        			sbB.deleteCharAt(B.indexOf(A.charAt(i)));
+        			B = sbB.toString();        		
+        		}else return false;
+        		
+        	}return true;
+        	
+        }return false;
+    }
+
+    @Override
+    public boolean hasAnagramOf(String string, String string2) {
+    	StringBuilder sbB = new StringBuilder(string2);
+        
+       
+        	for(int i=0; i< string.length();i++)
+        	{
+        		if(string2.contains((string.charAt(i)+"")))
+        		{
+        			sbB.deleteCharAt(string2.indexOf(string.charAt(i)));
+        			string2 = sbB.toString();        		
+        		}else return false;
+        		
+        	}return true;
+        	
+        
+    }
+ 
+
+	@Override
+	public boolean isPalindrome(int number) {
+			String tempN = Integer.toString(number);
+    	
+    	for(int i =0; i< tempN.length()/2 ; i++)
+    	{
+    		if(tempN.charAt(i) != tempN.charAt(tempN.length()-1-i))
+    		{
+    			return false;
+    		}
+    	}
+    	return true;
+	}
+
+	@Override
+	public void convertToGrayscale(String imgPath)
+	{
+		BufferedImage image;
+		File input,output;
+		int width,height;
+		Color originalColor, grayColor = null;
+		int sumOfGrays;
+
+		try {
+			input = new File("Project1/src/com/hackbulgaria/corejava/digital_image_processing.jpg");
+			image = ImageIO.read(input);
+			width = image.getWidth();
+			height = image.getHeight();
+			for(int i = 0; i< width; i++)
+			{
+				for(int j =0;j<height;j++)
+				{
+					originalColor = new Color(image.getRGB(i, j));
+					sumOfGrays = convertColorToGray(originalColor, 0.299, 0.587,  0.114);
+					grayColor = new Color(sumOfGrays,sumOfGrays,sumOfGrays);
+					image.setRGB(i, j, grayColor.getRGB());
+				}				
+			}
+			output = new File("grayScale.jpg");
+			ImageIO.write(image,"jpg",output);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	
+		
+	}
+	public int convertColorToGray(Color c,double d,double e, double f)
+	{
+		int red = (int) (c.getRed()* d);
+		int blue = (int) (c.getBlue()*f);
+		int green = (int) (c.getGreen()* e);
+		return red+blue+green;
+		
+	}
+	
+
+
+}

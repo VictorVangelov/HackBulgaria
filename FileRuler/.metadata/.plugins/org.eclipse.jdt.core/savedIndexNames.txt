@@ -1,0 +1,21 @@
+INDEX VERSION 1.127+/home/shosho/ProgrammingShits/HackBulgaria/FileRuler/.metadata/.plugins/org.eclipse.jdt.core
+2160046915.index
+849074526.index
+1985283256.index
+478523238.index
+194676093.index
+1326432406.index
+341080852.index
+2214808246.index
+1383484795.index
+3833721462.index
+4101699270.index
+3533781245.index
+108087937.index
+2445781908.index
+3808678856.index
+609245256.index
+1336490244.index
+3987721966.index
+845178973.index
+27689924.index

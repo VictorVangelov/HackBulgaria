@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Convert local variable &apos;executionOfReadmeTasks.PropartiesFileParser.generateProperties().brInputFile&apos; in &apos;executionOfReadmeTasks.PropartiesFileParser.generateProperties()&apos; to field&#x0A;- Original project: &apos;FileStreamers&apos;&#x0A;- Original element: &apos;executionOfReadmeTasks.PropartiesFileParser.generateProperties().brInputFile&apos;&#x0A;- Field name: &apos;brInputFile&apos;&#x0A;- Initialize field in method&#x0A;- Declared visibility: &apos;private&apos;" description="Convert local variable &apos;brInputFile&apos; to field" final="false" flags="2" id="org.eclipse.jdt.ui.promote.temp" initialize="1" input="/src&lt;executionOfReadmeTasks{PropartiesFileParser.java" name="brInputFile" selection="740 64" stamp="1429369338698" static="false" version="1.0" visibility="2"/>
+</session>

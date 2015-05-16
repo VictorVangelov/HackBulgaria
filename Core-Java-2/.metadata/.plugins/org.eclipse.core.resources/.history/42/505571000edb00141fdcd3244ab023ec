@@ -1,0 +1,11 @@
+public class a {
+	public static void main(String[] args) {
+		String asd = "asd";
+		try {
+			throw new NumbersInUsernameException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+	}
+}

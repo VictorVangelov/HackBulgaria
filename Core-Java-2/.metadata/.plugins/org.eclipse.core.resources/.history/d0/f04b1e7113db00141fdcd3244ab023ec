@@ -1,0 +1,30 @@
+public class a {
+	public static void main(String[] args) {
+		
+		
+		try {
+			try {
+				try {
+					//throw new NameIsEmptyException();
+					try {
+						throw new NumbersInUsernameException();
+					} catch (NumbersInUsernameException e) {
+						throw new NameIsEmptyException(e);
+					}
+					
+				} catch (NameIsEmptyException e) {
+					throw new SpecialSynbolsInUsernameException(e);
+				}
+				
+			} catch (SpecialSynbolsInUsernameException e) {
+				throw new DatabaseCorruptedException(e);
+			}
+			
+		} catch (DatabaseCorruptedException e) {
+			System.out.println("stacktrace ________________________________________");
+			e.printStackTrace();
+			e.
+		}
+
+	}
+}

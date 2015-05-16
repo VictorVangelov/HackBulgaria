@@ -1,0 +1,196 @@
+import java.lang.Math;
+import java.util.Arrays;
+
+
+public class Problems2Impl implements Problems2 {
+
+    public boolean isOdd(int number) {
+        if(number%2 == 0){
+            return false;
+        }
+        else return true;
+    }
+
+    public boolean isPrime(int number) {
+        if(number%2 == 0 & number > 2){ return false; }
+        int numberSqrt = (int) Math.sqrt(number);
+        for(int  i=3; i<= numberSqrt+1; i++)
+        {
+            if (number % i == 0)
+            {
+                return false;
+            }            
+        }
+        return true;
+    }
+    public int min(int[] array) {
+        Arrays.sort(array);
+        return array[0];
+    }
+
+    public int kthMin(int k, int[] array) {
+        Arrays.sort(array);
+        try {
+            return array[k];
+        } catch (NullPointerException npe) {
+           System.out.println("There is no kth element in this array");
+           System.out.println(npe.getStackTrace());
+           return 0;
+        }
+        
+    }
+
+    public float getAverage(int[] array) {
+        //int sum = IntStream.of(a).sum();
+        long sum = 0;
+        for(int i : array )
+        {
+            sum += i;
+        }
+        return sum/array.length;
+    }
+
+    public long Fact(long l){
+        long fact = 1;
+        while(l >1)
+        {
+            fact *= l;
+            l--;
+        }
+        return fact;
+    }
+    public long doubleFac(int n) {
+        
+        return Fact(Fact(n));
+    }
+
+    public long kthFac(int k, int n) {
+        long fact =n;
+        for (int i=0 ; i< k; i++)
+        {
+            fact = Fact(fact);
+        }
+        
+        return fact;
+    }
+
+
+    public long getSmallestMultiple(int upperBound) {
+        return 0;
+    }
+
+    @Override
+    public long getLargestPalindrome(long N) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int[] histogram(short[][] image) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int getOddOccurrence(int[] array) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public long pow(int a, int b) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public long maximalScalarSum(int[] a, int[] b) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int maxSpan(int[] array) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean canBalance(int[] array) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public int[][] rescale(int[][] original, int newWidth, int newHeight) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String reverseMe(String argument) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String copyEveryChar(String input, int k) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String reverseEveryWord(String arg) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean isPalindrome(String argument) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public boolean isPalindrome(int number) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public int getPalindromeLength(String input) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int countOcurrences(String needle, String haystack) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public String decodeURL(String input) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int sumOfNumbers(String input) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean areAnagrams(String A, String B) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public boolean hasAnagramOf(String string, String string2) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+}

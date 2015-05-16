@@ -1,0 +1,60 @@
+package com.hackbulgaria.corejava.firstTask;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class StackImpl<SomeClass> implements IStack, Iterable {
+
+	private ArrayList<SomeClass> stackArray;
+	public StackImpl() {
+		 stackArray = new ArrayList<SomeClass>();
+	}
+	@Override
+	public void push(Object element) {
+		if (!stackArray.contains(element)) {
+			stackArray.add((SomeClass) element);
+		}
+	}
+
+	@Override
+	public Object pop() {
+		try {
+			Object popedElement = peek();
+			stackArray.remove(stackArray.size() - 1);
+			return popedElement;
+		} catch (NullPointerException npe) {
+			return null;
+		}
+	}
+
+	@Override
+	public Integer length() {
+		return stackArray.size();
+	}
+
+	@Override
+	public void clear() {
+		stackArray.clear();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return stackArray.isEmpty();
+	}
+
+	@Override
+	public Object peek() {
+		try {
+			return stackArray.get(stackArray.size() - 1);
+		} catch (NullPointerException npe) {
+			return null;
+		}
+		
+	}
+	@Override
+	public Iterator iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

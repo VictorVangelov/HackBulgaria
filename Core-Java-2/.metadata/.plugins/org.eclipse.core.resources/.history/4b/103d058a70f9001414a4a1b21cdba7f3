@@ -1,0 +1,93 @@
+package CourseTasks;
+
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class RaceCondition implements Runnable {
+	public static Counter myCounter = new Counter();
+
+	private static boolean someoneIsWorking = false;
+
+	private synchronized void notifyMe() {
+		try {
+			System.out.println("before wait");
+			myCounter.notifyAll();
+			myCounter.wait();
+
+			System.out.println("after wait");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			lock.unlock();
+			System.out.println("after notify");
+		}
+	}
+
+	boolean isLocked() {
+		return lock.tryLock();
+	}
+
+	public void run() {
+		synchronized (myCounter) {
+			while (lock.tryLock()) {
+				try {
+					myCounter.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			lock.lock();
+			for (int i = 0; i < 200; i++) {
+				System.out.println(Thread.currentThread().getName());
+				myCounter.increment();
+				notifyMe();
+
+			}
+		}
+	}
+
+	/*
+	 * private void notifyMe() { isLocked = lock.tryLock(); notifyAll();
+	 * 
+	 * 
+	 * 
+	 * }
+	 * 
+	 * public void run() { synchronized (this) { while (isLocked) { try {
+	 * wait(); } catch (InterruptedException e) {
+	 * System.out.println("i wasnt ready"); } } for (int i = 0; i < 2_000_000;
+	 * i++) { // System.out.println(Thread.currentThread().getName());
+	 * myCounter.increment(); notifyMe(); } } }
+	 */
+
+	public static void main(String[] args) {
+		Thread a = new Thread(new RaceCondition());
+		Thread b = new Thread(new RaceCondition());
+		long startTime = System.currentTimeMillis();
+		try {
+			a.start();
+			b.start();
+			try {
+				a.join();
+			} catch (InterruptedException e1) {
+				System.out.println("A wasnt ready");
+			}
+			try {
+				b.join();
+			} catch (InterruptedException e) {
+				System.out.println("i wasnt ready - b");
+				e.printStackTrace();
+			}
+
+		} finally {
+			System.out
+					.printf("my counter`s value : %d%n", myCounter.getValue());
+			long endTime = System.currentTimeMillis() - startTime;
+			System.out.println("sums took: " + endTime);
+
+		}
+	}
+}

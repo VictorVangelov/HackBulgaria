@@ -1,0 +1,15 @@
+package CourseTasks;
+
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class Counter {
+
+	static int value = 0;
+	protected synchronized void increment(){
+		value++;
+	}
+	protected static int getValue(){
+		return value;
+	}
+}

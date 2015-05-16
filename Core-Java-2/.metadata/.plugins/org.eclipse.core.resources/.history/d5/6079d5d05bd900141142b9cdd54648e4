@@ -1,0 +1,23 @@
+package com.hackbulgaria.corejava.firstTask;
+
+public class tests {
+	public static void main(String[] args) {
+		Pair<Integer, String> first = new Pair(1,"a");
+		Pair<Integer, String> secound = new Pair(1,"a");
+		Pair<Double, String> third = new Pair(1,"a");
+		Pair<Float, String> fourth = new Pair(1.0f,'a');
+		float a = 1.0f;
+		int b = 1;
+		System.out.println(a == b);
+
+		System.out.println(first.equals(fourth));
+		
+		System.out.println(secound.equals(fourth));
+		
+		System.out.println(third.equals(fourth));
+		
+		System.out.println(fourth.equals(first));
+		System.out.println(fourth.equals(secound));
+		System.out.println(fourth.equals(third));
+	}
+}

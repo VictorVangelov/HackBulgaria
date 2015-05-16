@@ -1,0 +1,21 @@
+public class a {
+	public static void main(String[] args) {
+		try {
+			try {
+				throw new NumbersInUsernameException();
+			} catch (NumbersInUsernameException e) {
+				throw new DatabaseCorruptedException(e);
+				// TODO: handle exception
+			}
+
+		} catch (Exception e) {
+			System.out.println("Before getCause()");
+			e.getMessage();
+			System.out.println("\n\nBefore StackTrace");
+			e.printStackTrace();
+			System.out.println("\n\nBefore getMessage()");
+			e.getMessage();
+			
+		}
+	}
+}

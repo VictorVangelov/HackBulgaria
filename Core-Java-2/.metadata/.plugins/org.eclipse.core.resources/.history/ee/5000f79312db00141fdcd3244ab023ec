@@ -1,0 +1,19 @@
+
+public class NameIsEmptyException extends DatabaseCorruptedException {
+
+	public NameIsEmptyException(Exception son) {
+		super("in NIEE(e)",son);
+	}
+	
+	
+	
+	public NameIsEmptyException(String asd,Exception son) {
+		super("NIE",son);
+	}
+
+	public NameIsEmptyException(){
+		System.out.println("printer form NIEE()");
+	}
+
+
+}

@@ -1,0 +1,9 @@
+
+public class B {
+	
+	public void doSomeShit()
+	{
+		System.out.println("im class B");
+	}
+
+}

@@ -1,0 +1,73 @@
+package com.hackbulgaria.corejava;
+
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URLDecoder;
+import java.util.Arrays;
+import java.util.HashMap;
+
+import javax.imageio.ImageIO;
+
+public class testSomeJavaMethods {
+
+	public static void main(String[] args) {
+		String input = "999problemsButJavaAint0";
+		String[] parsedArray = input.split("\\d]+");
+		int sum = 0;		
+		for(String item: parsedArray)			
+		{		
+			System.out.println(item);
+			try {				
+				sum += Integer.parseInt(item);	
+			} catch (Exception e) {	}
+		}
+		System.out.println(sum);
+    }
+	
+	public static void convertToGrayscale(String imgPath)
+	{
+		BufferedImage image;
+		File input,output;
+		int width,height;
+		Color originalColor, grayColor = null;
+		int sumOfGrays;
+
+		try {
+			input = new File(".\\digital_image_processing.jpg");
+			image = ImageIO.read(input);
+			width = image.getWidth();
+			height = image.getHeight();
+			for(int i = 0; i< width; i++)
+			{
+				for(int j =0;j<height;j++)
+				{
+					originalColor = new Color(image.getRGB(i, j));
+					sumOfGrays = convertColorToGray(originalColor, 0.299, 0.587,  0.114);
+					grayColor = new Color(sumOfGrays,sumOfGrays,sumOfGrays);
+					image.setRGB(i, j, grayColor.getRGB());
+				}				
+			}
+			output = new File("grayScale.jpg");
+			ImageIO.write(image,"jpg",output);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	
+		
+	}
+	public static int convertColorToGray(Color c,double d,double e, double f)
+	{
+		int red = (int) (c.getRed()* d);
+		int blue = (int) (c.getBlue()*f);
+		int green = (int) (c.getGreen()*e);
+		return red+blue+green;
+		
+	}
+/*	public String toString()
+	{
+		return getClass().getName()+"@"+Integer.toHexString(hashCode());
+	}*/
+
+}

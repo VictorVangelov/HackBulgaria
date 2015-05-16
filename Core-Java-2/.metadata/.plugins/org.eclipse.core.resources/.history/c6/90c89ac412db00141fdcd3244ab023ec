@@ -1,0 +1,26 @@
+public class a {
+	public static void main(String[] args) {
+		try {
+
+			try { 
+				try {
+					throw new NumbersInUsernameException();
+				} catch (NumbersInUsernameException e) {
+					throw new DatabaseCorruptedException(e);
+					// TODO: handle exception
+				}
+
+			} catch (Exception e) {
+				throw new SpecialSynbolsInUsernameException(e);
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+			System.out.println("\nafter message ");
+			e.printStackTrace();
+			System.out.println("\nafter trace  ");
+			e.getCause();
+		}
+
+	}
+}

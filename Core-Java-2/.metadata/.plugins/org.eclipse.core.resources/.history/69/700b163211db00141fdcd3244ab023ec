@@ -1,0 +1,9 @@
+
+public class NameIsEmptyException extends DatabaseCorruptedException {
+
+	public NameIsEmptyException(Exception son) {
+		super(son);
+	}
+
+
+}

@@ -1,0 +1,75 @@
+package CourseTasks;
+
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class RaceCondition implements Runnable {
+	public static Counter myCounter = new Counter();
+	final static Lock lock = new ReentrantLock();
+
+	private static boolean isLocked = false;
+
+	private static AtomicInteger c = new AtomicInteger(0);
+	private static int basicCounter = 0;
+
+	private static boolean isLocked() {
+		return Counter.lock.tryLock();
+	}
+
+	public void run() {
+	synchronized (Counter.lock) {
+		
+	}
+		while (lock) {
+			try {
+				wait();
+			} catch (InterruptedException e) {}
+		}
+		
+		for (int i = 0; i < 2_000_000; i++) {
+			myCounter.increment();
+			try {
+				Counter.lock.wait();
+			} catch (InterruptedException e) {	}
+			
+		}
+		
+	}
+
+	private static void increment() {
+		c.incrementAndGet();
+	}
+
+	private static synchronized void basicIncrement() {
+		basicCounter++;
+	}
+
+	public static void main(String[] args) {
+		Thread a = new Thread(new RaceCondition());
+		Thread b = new Thread(new RaceCondition());
+		long startTime = System.currentTimeMillis();
+		try {
+			a.start();
+			b.start();
+			try {
+				a.join();
+			} catch (InterruptedException e1) {
+				System.out.println("A wasnt ready");
+			}
+			try {
+				b.join();
+			} catch (InterruptedException e) {
+				System.out.println("i wasnt ready - b");
+				e.printStackTrace();
+			}
+
+		} finally {
+			System.out
+					.printf("my counter`s value : %d%n", myCounter.getValue());
+			long endTime = System.currentTimeMillis() - startTime;
+			System.out.println("sums took: " + endTime);
+
+		}
+	}
+}

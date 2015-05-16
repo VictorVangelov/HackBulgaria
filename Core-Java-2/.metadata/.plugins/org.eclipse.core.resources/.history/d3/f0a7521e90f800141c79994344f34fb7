@@ -1,0 +1,8 @@
+package CourseTasks;
+
+	
+	public void run() {
+		RaceCondition.c++;
+		
+	}
+}

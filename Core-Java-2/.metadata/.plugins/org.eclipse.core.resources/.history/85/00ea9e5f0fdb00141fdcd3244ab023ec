@@ -1,0 +1,15 @@
+ 
+public class DatabaseCorruptedException extends Exception {
+
+	public DatabaseCorruptedException(String msg, Throwable causedBy){
+		super(msg ,causedBy);
+	}
+	
+	public DatabaseCorruptedException(Throwable causedBy){
+		super(causedBy);
+	}
+	public DatabaseCorruptedException(){
+		System.out.println("I print from the DCE()");
+	}
+
+}

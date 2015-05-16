@@ -1,0 +1,12 @@
+package com.hackbulgaria.corejava.firstTask;
+
+public interface IStack {
+	
+	Object pop();
+	Integer length();
+	void clear();
+	boolean isEmpty();
+	void push( <T> element);
+	
+
+}

@@ -1,0 +1,14 @@
+package com.hackbulgaria.corejava.firstTask;
+
+public class StackImpl implements IStack
+{
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+		
+	}
+
+}

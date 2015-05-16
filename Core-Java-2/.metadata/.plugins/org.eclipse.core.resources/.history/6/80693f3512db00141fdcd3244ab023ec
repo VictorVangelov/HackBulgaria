@@ -1,0 +1,10 @@
+
+public class SpecialSynbolsInUsernameException extends Exception{
+	SpecialSynbolsInUsernameException(){
+		super("in SSIUE()");
+	}
+	SpecialSynbolsInUsernameException(Throwable asd){
+		super("In SSIUE(e)", asd);
+	}
+
+}

@@ -1,0 +1,21 @@
+package CourseTasks;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class BlockingQueue {
+
+	static Queue<String> myQueue = new LinkedList<String>();
+
+	public static void main(String[] args) throws InterruptedException {
+		Thread adder = new Thread(){
+
+            public void run() {
+            	for(;;){
+            		synchronized(myQueue)
+            	}
+            	
+            }
+		};
+	}
+}

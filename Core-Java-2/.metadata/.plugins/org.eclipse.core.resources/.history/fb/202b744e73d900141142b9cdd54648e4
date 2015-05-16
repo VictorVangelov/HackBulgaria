@@ -1,0 +1,34 @@
+package com.hackbulgaria.corejava.firstTask;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class tests {
+	public static void main(String[] args) {
+/*		Pair<Integer, String> first = new Pair(1,"a");
+		Pair<Integer, String> secound = new Pair(1,"a");
+		Pair<Double, String> third = new Pair(1,"a");
+		Pair<Float, String> fourth = new Pair(1.0f,'a');
+
+		System.out.println(first.equals(fourth));
+		
+		System.out.println(secound.equals(fourth));
+		
+		System.out.println(third.equals(fourth));
+		
+		System.out.println(fourth.equals(first));
+		System.out.println(fourth.equals(secound));
+		System.out.println(fourth.equals(third));*/
+		
+		
+		int[] asd = new int[16];
+		StackImpl<Float> stackArray = new StackImpl<Float>();
+		stackArray.push(2.1f);
+		stackArray.push(2.1f);
+		stackArray.push(2.2f);
+		stackArray.push(2.3f);
+		for (int i=0; i< 3);i++) {
+			System.out.println( stackArray.length()-i+"    -     "+ stackArray.pop());
+		}
+	}
+}

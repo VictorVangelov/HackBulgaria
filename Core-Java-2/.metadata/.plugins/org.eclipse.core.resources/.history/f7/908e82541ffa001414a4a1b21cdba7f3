@@ -1,0 +1,54 @@
+package CourseTasks;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class BlockingQueue {
+
+	static Queue<String> myQueue = new LinkedList<String>();
+	static boolean isEmpty = true;
+	static String polledString;
+
+	public static void main(String[] args) throws InterruptedException {
+		Thread adder = new Thread() {
+			public void run() {
+				for (;;) {
+					synchronized (myQueue) {
+						while (!isEmpty) {
+							try {
+								myQueue.wait();
+							} catch (InterruptedException e) {
+							}
+						}
+						isEmpty = false;
+						myQueue.add("Text by Adder");
+						notifyAll();
+					}
+				}
+			}
+		};
+		Thread poller = new Thread() {
+			public void run() {
+				for (;;) {
+					synchronized (myQueue) {
+						while (!isEmpty) {
+							try {
+								myQueue.wait();
+							} catch (InterruptedException e) {
+							}
+						}
+						polledString= myQueue.poll();
+						System.out.println("I polled from the queue, and now its empty");
+						isEmpty = true;
+						notifyAll();
+					}
+				}
+			}
+		};
+
+		adder.start();
+		poller.start();
+		
+		
+	}
+}

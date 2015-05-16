@@ -1,0 +1,54 @@
+package com.hackbulgaria.corejava.firstTask;
+
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class StackImpl<SomeClass> extends Collections implements IStack{
+	private int defaultSize = 32;
+	private int freeSpace;
+	private Object[] stackArray ;
+	
+	
+	public StackImpl(){
+		super(SomeClass);
+
+		stackArray = new Object[defaultSize];
+		
+	}
+
+	
+
+
+	@Override
+	public void push(Object element) {
+		stackImpl.add(element);
+		
+	}
+
+	@Override
+	public Object pop() {
+		
+		Object element = stackImpl.get(stackImpl.size()-1);
+		return null;
+	}
+
+	@Override
+	public Integer length() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

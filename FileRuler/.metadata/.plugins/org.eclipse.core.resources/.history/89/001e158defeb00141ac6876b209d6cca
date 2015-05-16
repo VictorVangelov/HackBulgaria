@@ -1,0 +1,167 @@
+package com.hackbulgaria.fileruler;
+
+import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.imageio.ImageIO;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.google.gson.JsonObject;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+
+public class ImageFactory extends Thread {
+
+	String name;
+	Path path;
+	int width;
+	int height;
+	FileTime createdDate;
+	HashMap<String, Long> imaggaTags;
+	ArrayList<String> fileRulerTags;
+	JsonObject imaggaJSON;
+	BufferedImage bimg;
+	BasicFileAttributes attr;
+	String defaultPicDBFolder = "/home/shosho/Downloads/FileRulerPicDB/";
+
+	public static void main(String[] args) throws IOException {
+		
+		generateAllImages();
+	}
+		
+	private String getImaggaResponce(URL url){
+		String someUrl = "https://scontent-fra.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/10653530_767502736703794_628716156711673870_n.jpg?oh=22776b7460fab2ada693a9217d3bc10c&oe=55D2F376";
+		String imaggaEndPoint = "http://api.imagga.com/v1/tagging?url=";
+		com.mashape.unirest.http.HttpResponse<String> response;
+		try {
+			response = Unirest
+					.get(imaggaEndPoint.concat(someUrl))
+					.header("accept", "application/json")
+					.header("authorization","Basic YWNjX2YzYTVkYTc4N2ZmZTZmMDo0MmIwNWZhMTcwNjlhOGMzMDgwMjkyNDBkNjkwODU0Mw==")
+					.asString();
+			return response.toString();
+		} catch (UnirestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	
+/*	private String getImaggaResponce(URL url){
+		String someUrl = "https://scontent-fra.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/10653530_767502736703794_628716156711673870_n.jpg?oh=22776b7460fab2ada693a9217d3bc10c&oe=55D2F376";
+		String imaggaEndPoint = "http://api.imagga.com/v1/tagging?url=";
+		com.mashape.unirest.http.HttpResponse<String> response;
+		try {
+			response = Unirest
+					.get(imaggaEndPoint.concat(someUrl))
+					.header("accept", "application/json")
+					.header("authorization","Basic YWNjX2YzYTVkYTc4N2ZmZTZmMDo0MmIwNWZhMTcwNjlhOGMzMDgwMjkyNDBkNjkwODU0Mw==")
+					.asString();
+			return response.toString();
+		} catch (UnirestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+	}*/
+
+	public ImageFactory(String filePathAndName) {
+		super(filePathAndName);
+	}
+
+	public static String readFrom(File inputFile) throws IOException {
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br = new BufferedReader(new FileReader(inputFile));
+		String currentLineOfFile;
+		while ((currentLineOfFile = br.readLine()) != null) {
+			sb.append(currentLineOfFile);
+		}
+		br.close();
+		return sb.toString();
+	}
+
+	@Override
+	public void run() {
+
+		name = getName().substring(name.lastIndexOf(File.pathSeparator) + 1,name.lastIndexOf('?'));
+
+		try {
+			path =  Paths.get(new URI(defaultPicDBFolder+name));
+			String someUrl = "https://scontent-fra.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/10653530_767502736703794_628716156711673870_n.jpg?oh=22776b7460fab2ada693a9217d3bc10c&oe=55D2F376";
+			String imaggaEndPoint = "http://api.imagga.com/v1/tagging?url=";
+			try {
+				com.mashape.unirest.http.HttpResponse<String> response = Unirest
+						.get(imaggaEndPoint.concat(someUrl))
+						.header("accept", "application/json")
+						.header("authorization",
+								"Basic YWNjX2YzYTVkYTc4N2ZmZTZmMDo0MmIwNWZhMTcwNjlhOGMzMDgwMjkyNDBkNjkwODU0Mw==")
+						.asString();
+
+				String jsonContent =  response.toString();
+				JSONObject obj = new JSONObject(jsonContent);
+				JSONArray arr = obj.getJSONArray("results");
+				JSONObject imaggaInformation = arr.getJSONObject(0);
+				JSONArray tagsAndConfidence = (JSONArray) imaggaInformation
+						.get("tags");
+				for (int i = 0; i < tagsAndConfidence.length(); i++) {
+					String tag = tagsAndConfidence.getJSONObject(i).getString("tag");
+					long confidence = tagsAndConfidence.getJSONObject(i).getLong("confidence");
+					imaggaTags.put(tag, confidence);
+				}
+				name = getName().substring(name.lastIndexOf(File.pathSeparator) + 1,name.lastIndexOf('?'));
+				path = Paths.get(new URI(getName()));
+				bimg = ImageIO.read(new File(getName()));
+				width = bimg.getWidth();
+				height = bimg.getHeight();
+				attr = Files.readAttributes(path, BasicFileAttributes.class);
+				createdDate = attr.creationTime();
+				ImagesCollection.imagesCollection.add(new Image(path, name,width, height, createdDate, imaggaTags));
+			} catch (UnirestException e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+			}
+		} catch (JSONException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	static void generateAllImages() throws IOException {
+		File allUrls = new File("urls.txt");
+		String allURLS[] = readFrom(allUrls).split(";");
+		for (String pathToFile : allURLS) {
+			//new ImageFactory(pathToFile).start();
+			System.out.println();
+
+		}
+	}
+
+}

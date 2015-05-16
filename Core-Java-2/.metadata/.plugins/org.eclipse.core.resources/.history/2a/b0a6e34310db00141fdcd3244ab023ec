@@ -1,0 +1,10 @@
+
+public class NameIsEmptyException extends DatabaseCorruptedException {
+
+	static String causedString = "asd";
+	public NameIsEmptyException(Exception son) {
+		super(son);
+	}
+
+
+}

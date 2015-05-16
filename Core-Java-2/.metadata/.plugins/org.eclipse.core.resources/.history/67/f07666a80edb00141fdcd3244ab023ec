@@ -1,0 +1,14 @@
+public class a {
+	public static void main(String[] args) {
+		try {
+		try {
+			throw new NumbersInUsernameException();
+		} catch (NumbersInUsernameException  e) {
+			throw new DatabaseCorruptedException();
+			// TODO: handle exception
+		}
+			
+		} catch (Exception e) {
+			e.getMessage();
+	}}
+}
