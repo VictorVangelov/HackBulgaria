@@ -30,13 +30,13 @@ public class UrlPreparer {
 			return false;
 	}
 	
-	private static void fulfillNotVisited(String content) {
+	static void fulfillNotVisited(String content) {
 		for (String url : getAllLinks(content)) {
 			if (!isOutgoing(url)) {
 				if (!containHashTag(url)) {
-					if (!visitedUrls.contains(url)) {
+					if (!WebCrawler.visitedUrls.contains(url)) {
 						String preparedLink = prepareLink(url);
-						stillNotVisited.add(preparedLink);
+						WebCrawler.stillNotVisited.add(preparedLink);
 					}
 				}
 			}

@@ -77,7 +77,7 @@ public class workingWithAPI {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		String fileName = "allstudents.json";
 		String url = "https://hackbulgaria.com/api/students/";
 		workWithApi(url);

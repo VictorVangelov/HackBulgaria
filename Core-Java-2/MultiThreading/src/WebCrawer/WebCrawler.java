@@ -54,10 +54,10 @@ public class WebCrawler {
 
 
 	public static void crowler(String url, String needle) {
-		visitedUrls.add(url);
+/*		visitedUrls.add(url);
 		String content = getContent(url);
 		checkForMatch(content, needle, url);
-		fulfillNotVisited(content);
+		UrlPreparer.fulfillNotVisited(content);*/
 
 	}
 
@@ -80,7 +80,7 @@ public class WebCrawler {
 	}
 
 	public static void main(String[] args) {
-		String homeUrl = "http://www.mileycyrus.com/";
+/*		String homeUrl = "http://www.mileycyrus.com/";
 		setHomeUrl(homeUrl);
 		// String formatedUrl = getURLHost(homeUrl);
 		String url = "";
@@ -89,9 +89,9 @@ public class WebCrawler {
 		while (stillNotVisited.size() != 0) {
 			url = stillNotVisited.get(0);
 			stillNotVisited.remove(0);
-			crowler(url, needle);
+			crowler(url, needle);*/
 		}
 
 	}
 
-}
+

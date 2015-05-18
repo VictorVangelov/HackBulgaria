@@ -19,10 +19,10 @@
 	<classpathentry kind="lib" path="/home/shosho/ProgrammingShits/Downloaded Libs - Java/httpcomponents-client-4.4.1/lib/httpclient-win-4.4.1.jar"/>
 	<classpathentry kind="lib" path="/home/shosho/ProgrammingShits/Downloaded Libs - Java/httpcomponents-client-4.4.1/lib/jna-4.1.0.jar"/>
 	<classpathentry kind="lib" path="/home/shosho/ProgrammingShits/Downloaded Libs - Java/httpcomponents-client-4.4.1/lib/jna-platform-4.1.0.jar"/>
-	<classpathentry kind="lib" path="/DebuggingFun/libs/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="/home/shosho/ProgrammingShits/Downloaded Libs - Java/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="/home/shosho/ProgrammingShits/Downloaded Libs - Java/jettison-1.3.3-sources.jar"/>
 	<classpathentry kind="lib" path="/home/shosho/ProgrammingShits/Downloaded Libs - Java/org.json-20120521.jar"/>
 	<classpathentry kind="lib" path="/home/shosho/ProgrammingShits/Downloaded Libs - Java/jdom/build/jdom-1.1.3.jar"/>
-	<classpathentry kind="lib" path="/home/shosho/ProgrammingShits/RomeLibraryExample/rome-1.0.jar"/>
+	<classpathentry kind="lib" path="/home/shosho/ProgrammingShits/Downloaded Libs - Java/rome-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
