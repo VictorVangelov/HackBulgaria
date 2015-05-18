@@ -15,7 +15,7 @@ import org.apache.http.impl.client.HttpClients;
 
 import java.lang.AutoCloseable;
 
-
+@Author(name="Shosho", date="05.05.2015")
 public class FileDownloader {
 
 	public static void downloader(String hddUrl, String myUrl)

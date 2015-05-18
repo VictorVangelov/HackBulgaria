@@ -1,4 +1,4 @@
-package JUnitFramework;
+package junitframework;
 
 public enum Priority{
 	LOW, MEDIUM, HIGH
