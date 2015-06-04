@@ -1,0 +1,76 @@
+package WebCrawer;
+
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.http.concurrent.FutureCallback;
+
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
+
+public class asd {
+	public static void main(String[] args) throws MalformedURLException {
+		ArrayList<URL> someArrWithSites = new ArrayList<URL>(
+				Arrays.asList(
+						new URL(
+								"http://www.nurkiewicz.com/2013/02/listenablefuture-in-guava.html"),
+						new URL(
+								"http://www.nurkiewicz.com/2013/02/javautilconcurrentfuture-basics.html")));
+
+		ListeningExecutorService pool = MoreExecutors
+				.listeningDecorator(Executors.newCachedThreadPool());
+
+		URL siteUrl = new URL("http://www.nurkiewicz.com/2013/02/javautilconcurrentfuture-basics.html");
+			while (!WebCrawler.stillNotVisited.isEmpty()) {
+				final ListenableFuture<String> future = pool
+						.submit(new Callable<String>() {
+							@Override
+							public String call() throws Exception {
+								return IOUtils.toString(WebCrawler.stillNotVisited.poll(),
+										StandardCharsets.UTF_8);
+							}
+						});
+				Futures.addCallback(
+						future,
+						new com.google.common.util.concurrent.FutureCallback<String>() {
+
+							@Override
+							public void onFailure(Throwable arg0) {
+								System.out.println("failere\n\n"
+										+ arg0.getCause());
+							}
+
+							@Override
+							public void onSuccess(String arg0) {
+								System.out.println("success\n\n");
+								WebCrawler.contentContainer.add(arg0);
+							}
+						});
+			}
+
+			/*
+			 * future.addListener(new Runnable() {
+			 * 
+			 * @Override public void run() { try { final String contents =
+			 * future.get(); WebCrawler.contentContainer.add(contents); } catch
+			 * (InterruptedException e) { // log.error("Interrupted", e); }
+			 * catch (ExecutionException e) {
+			 * System.out.println("Exception in task" + e.getCause()); //
+			 * log.error("Exception in task", e.getCause()); } } },
+			 * MoreExecutors.sameThreadExecutor());
+			 */
+
+		}
+	}
+
+}

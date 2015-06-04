@@ -1,0 +1,18 @@
+package Crawler;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
+public class FileFormats {
+	public static ArrayList<String> videoFormats = new ArrayList<String>(Arrays.asList("avi","mkv",
+			"flv", "mng", "wmv", "mp4", "mpeg", "3gp" ));
+	public static ArrayList<String> audioFormats = new ArrayList<String>(Arrays.asList("mp3","wma","wav", "raw",
+			"aiff", "webm", "m4a"));
+	
+	public static ArrayList<String> textFormats = new ArrayList<String>(Arrays.asList("txt",
+			 "docx", "doc","wpd" ));
+	
+	public static ArrayList<String> imageFormats = new ArrayList<String>(Arrays.asList(
+			jpeg,bmp,png,hdr));
+}

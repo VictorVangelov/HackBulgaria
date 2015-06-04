@@ -1,0 +1,8 @@
+package WebCrawer;
+
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+public class ContentAnalyzer {
+	public static ConcurrentLinkedQueue<String> contentContainer = new ConcurrentLinkedQueue<String>();
+
+}

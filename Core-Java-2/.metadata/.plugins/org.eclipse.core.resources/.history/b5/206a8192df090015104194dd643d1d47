@@ -1,0 +1,22 @@
+package interviewTasks;
+
+public class QuickSort {
+	private int[] sortedArray;
+
+	public void sort(int[] unSortedArray) {
+		int lenght = unSortedArray.length;
+		if(lenght ==0 || unSortedArray == null){
+			return;
+		}else{this.sortedArray = unSortedArray;
+			quickSort(unSortedArray,0,lenght-1);
+		}
+
+	}
+	private void quickSort(int[] unSortedArray, int first,int last ){
+		int i = first;
+		int j = last;
+		int pivot = unSortedArray[(first+(last-first)/2)];
+		
+	}
+
+}

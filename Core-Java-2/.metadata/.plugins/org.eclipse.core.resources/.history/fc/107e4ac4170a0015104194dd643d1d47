@@ -1,0 +1,24 @@
+package interviewTasks;
+
+public class BracketsTask {
+	static boolean isCorrectExpresion(String expresion) {
+		int correctExpresion = 0;
+		char[] chArrExp = expresion.toCharArray();
+		for (char symbol : chArrExp) {
+			if (symbol == '(') {
+				correctExpresion++;
+			}
+			if (symbol == ')') {
+				correctExpresion--;
+			}
+			if (correctExpresion < 0) {
+				return false;
+			}
+		}
+		return correctExpresion == 0;
+	}
+	public static void main(String[] args) {
+		String someExpr = "()(())()";
+		System.out.println(isCorrectExpresion(someExpr));
+	}
+}

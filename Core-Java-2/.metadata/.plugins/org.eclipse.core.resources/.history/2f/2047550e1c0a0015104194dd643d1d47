@@ -1,0 +1,23 @@
+package interviewTasks;
+
+import java.util.LinkedList;
+
+public class middleElementOfLinkedList {
+	
+	static int getMiddleElement(LinkedList<Integer> someLinkedList){
+		int rabit;
+		int element;
+		int mid;
+		while(!someLinkedList.isEmpty()){
+			element = someLinkedList.poll();
+			rabit++;
+			if(rabit%2 != 0){
+				mid = element;
+			}
+		}
+		return mid;
+		
+		
+	}
+
+}

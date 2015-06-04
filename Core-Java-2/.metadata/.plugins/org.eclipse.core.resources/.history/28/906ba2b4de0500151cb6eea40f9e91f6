@@ -1,0 +1,35 @@
+package HddCrawler;
+
+import java.io.IOException;
+
+public class startingPathConfig {
+	public static void main(String[] args) throws IOException {
+		String current = new java.io.File(".").getCanonicalPath();
+		String somePath = "/home/shosho/Downloads/The.Fast.And.The.Furious.Trilogy.HDRip.XviD.AC3.D-Z0N3/";
+		System.out.println(current);
+		String[] currPathDirs = current.split("/");
+		String[] wantedPathDirs = somePath.split("/");
+		int i;
+		StringBuilder newPath= new StringBuilder();
+		for (i = 0; i < currPathDirs.length; i++) {
+			if (currPathDirs[i].equals(wantedPathDirs[i])) {
+				i++;
+
+			} else {				break;			}
+		}
+		for(int h=0;h<i;h++){
+			
+			newPath.append("../");
+		}
+		int numOfWantedDots= currPathDirs.length-i;
+		for(int j=i;j<wantedPathDirs.length;j++){
+			newPath.append(wantedPathDirs[j]);
+			
+		}
+		newPath.toString();
+		System.out.println(somePath);
+		System.out.println(newPath);
+		
+		
+	}
+}

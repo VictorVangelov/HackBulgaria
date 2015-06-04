@@ -1,0 +1,15 @@
+package HddCrawler;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class startingPathConfig {
+public static void main(String[] args) throws IOException {
+	String current = new java.io.File( "." ).getCanonicalPath();
+	System.out.println(current);
+	ArrayList<String> numbersOfSubDirs = current.split("/");
+	for (String string : args) {
+		
+	}
+}
+}

@@ -6,20 +6,20 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="prepareMatchResult" key="selection"/>
+		<item value="compare" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="compare"/>
+			<item value="comp"/>
+			<item value="crowler"/>
+			<item value="getContent"/>
+			<item value="fulfillNotVisited"/>
 			<item value="prepareMatchResult"/>
 			<item value="still"/>
 			<item value="notv"/>
-			<item value="main"/>
-			<item value="thread"/>
-			<item value="ECDSA_WITH_AES_256_CBC_SHA"/>
-			<item value="TLS_ECDHE_"/>
-			<item value="TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
@@ -30,7 +30,7 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="273" key="DIALOG_WIDTH"/>
-		<item value="1|Ubuntu|9.09375|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="1|Ubuntu|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 		<item value="412" key="DIALOG_HEIGHT"/>
 		<item value="4" key="DIALOG_X_ORIGIN"/>
 		<item value="192" key="DIALOG_Y_ORIGIN"/>

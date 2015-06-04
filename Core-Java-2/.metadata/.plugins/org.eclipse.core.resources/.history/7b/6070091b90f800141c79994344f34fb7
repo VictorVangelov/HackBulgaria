@@ -1,8 +1,0 @@
-package CourseTasks;
-
-public class Athread implements new Runnable() {
-	public void run() {
-		RaceCondition.c++;
-		
-	}
-}

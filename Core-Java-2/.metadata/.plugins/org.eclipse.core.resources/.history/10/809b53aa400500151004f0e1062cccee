@@ -1,0 +1,9 @@
+package HddCrawler;
+
+import java.nio.file.Path;
+import java.util.Queue;
+
+public class UnIndexedFilesContainer {
+	public static Queue<Path> unIndexedMovies = new Queue<Path>;
+
+}

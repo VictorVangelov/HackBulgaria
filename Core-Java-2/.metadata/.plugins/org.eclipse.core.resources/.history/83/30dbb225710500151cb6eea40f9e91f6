@@ -1,0 +1,63 @@
+package HddCrawler;
+
+public class FileTypeMatcher {
+	
+	
+	protected static void fillUnIndextedFileContainers(String pathToFile){
+		//System.out.println(pathToFile.substring(pathToFile.lastIndexOf('.')+1));
+		if(isVideoFormat(pathToFile)){
+			UnIndexedFilesContainer.unIndexedMovies.add(pathToFile);
+			System.out.println("add in Video");
+		}
+		else if(isTextFormat(pathToFile)){
+			System.out.println("add in text");
+			UnIndexedFilesContainer.unIndexedText.add(pathToFile);
+		}
+		else if(isImageFormat(pathToFile)){
+			System.out.println("add in IMG");
+			UnIndexedFilesContainer.unIndexedImages.add(pathToFile);
+		}
+		else if(isAudioFormat(pathToFile)){
+			System.out.println("add in music");
+			UnIndexedFilesContainer.unIndexedAudio.add(pathToFile);
+		}
+	}
+	
+	private static boolean isVideoFormat(String pathToFile) {
+
+		if (FileFormats.videoFormats.contains(pathToFile.substring(pathToFile
+				.lastIndexOf('.' + 1)))) {
+			return true;
+		}
+		return false;
+	}
+
+	private static boolean isTextFormat(String pathToFile) {
+
+		if (FileFormats.textFormats.contains(pathToFile.substring(pathToFile
+				.lastIndexOf('.' + 1)))) {
+			return true;
+		}
+		return false;
+	}
+
+	private static boolean isAudioFormat(String pathToFile) {
+
+		if (FileFormats.videoFormats.contains(pathToFile.substring(pathToFile
+				.lastIndexOf('.' + 1)))) {
+			return true;
+		}
+		return false;
+	}
+
+	private static boolean isImageFormat(String pathToFile) {
+		System.out.println(pathToFile);
+
+		if (FileFormats.videoFormats.contains(pathToFile.substring(pathToFile
+				.lastIndexOf('.' + 1)))) {
+			return true;
+		}
+		return false;
+	}
+
+}

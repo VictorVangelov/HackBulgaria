@@ -1,0 +1,77 @@
+package WebCrawer;
+
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+
+import org.apache.commons.io.IOUtils;
+
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
+
+public class asd {
+	public static void main(String[] args) throws MalformedURLException {
+		ArrayList<URL> someArrWithSites = new ArrayList<URL>(
+				Arrays.asList(
+						new URL("http://www.nurkiewicz.com/2013/02/listenablefuture-in-guava.html"),
+						new URL("http://www.nurkiewicz.com/2013/02/javautilconcurrentfuture-basics.html")));
+
+		ListeningExecutorService pool = MoreExecutors
+				.listeningDecorator(Executors.newFixedThreadPool(10));
+
+ListenableFuture in Guava
+Fram Museum
+ListenableFuture in Guava is an attempt to define consistent API for Future objects to register completion callbacks. With the ability to add callback when Future completes, we can asynchronously and effectively respond to incoming events. If your application is highly concurrent with lots of future objects, I strongly recommend using ListenableFuture whenever you can.
+
+Technically ListenableFuture extends Future interface by adding simple
+
+void addListener(Runnable listener, Executor executor)
+
+method. That's it. If you get a hold of ListenableFuture you can register Runnable to be executed immediately when future in question completes. You must also supply Executor (ExecutorService extends it) that will be used to execute your listener - so that long-running listeners do not occupy your worker threads.
+
+Let's put that into action. We will start by refactoring our first example of web crawler to use ListenableFuture. Fortunately in case of thread pools it's just a matter of wrapping them using MoreExecutors.listeningDecorator():
+
+
+ListeningExecutorService pool = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10));
+
+for (final URL siteUrl : topSites) {
+	final ListenableFuture<String> future = pool.submit(new Callable<String>() {
+        @Override
+        public String call() throws Exception {
+            return IOUtils.toString(siteUrl, StandardCharsets.UTF_8);
+        }
+    });
+			final ListenableFuture<String> future = pool
+					.submit(new Callable<String>() {
+						@Override
+						public String call() throws Exception {
+							InputStream tempUrl;
+							return IOUtils.toString(tempUrl, StandardCharsets.UTF_8);
+						}
+					});
+
+			future.addListener(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						final String contents = future.get();
+						System.out.println(content);
+					} catch (InterruptedException e) {
+						// log.error("Interrupted", e);
+					} catch (ExecutionException e) {
+						System.out.println("Exception in task" + e.getCause());
+						// log.error("Exception in task", e.getCause());
+					}
+				}
+			}, MoreExecutors.sameThreadExecutor());
+		}
+	}
+
+}

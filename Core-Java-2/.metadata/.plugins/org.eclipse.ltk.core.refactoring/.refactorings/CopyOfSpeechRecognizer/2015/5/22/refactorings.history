@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 3 elements to &apos;speachRecognition/src/demo.sphinx.helloworld&apos;&#x0A;- Original project: &apos;CopyOfSpeechRecognizer&apos;&#x0A;- Destination element: &apos;speachRecognition/src/demo.sphinx.helloworld&apos;&#x0A;- Original elements:&#x0A;     demo.sphinx.helloworld.HelloWorld.java&#x0A;     helloworld.config.xml&#x0A;     hello.gram&#x0A;- Update references to refactored element" description="Move elements" destination="=speachRecognition/src&lt;demo.sphinx.helloworld" element1="src/demo/sphinx/helloworld/helloworld.config.xml" element2="src/demo/sphinx/helloworld/hello.gram" element3="/src&lt;demo.sphinx.helloworld{HelloWorld.java" files="2" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1432832297258" units="1" version="1.0"/>
+</session>

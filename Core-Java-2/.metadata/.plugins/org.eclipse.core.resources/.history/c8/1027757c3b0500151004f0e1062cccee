@@ -1,0 +1,5 @@
+package Formats;
+
+public enum MusicFormats {
+
+}

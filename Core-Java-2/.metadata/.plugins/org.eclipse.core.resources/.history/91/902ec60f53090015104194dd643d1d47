@@ -1,0 +1,25 @@
+package WebCrawer2;
+
+import java.net.URL;
+import java.util.HashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+public class ContentAnalyzer implements Runnable {
+	//public static ConcurrentLinkedQueue<String> contentContainer = new ConcurrentLinkedQueue<String>();
+	public static HashMap<URL, String> contentContainer = new HashMap<URL,String>();
+
+	@Override
+	public void run() {
+		String currContent  = contentContainer.poll();
+		WebCrawler2.urlAndTitels.put(currentUrl, WebCrawler2.getTitels(currContent));
+		UrlPreparer.fulfillNotVisited(currContent);
+		
+		
+	}
+	
+	
+	
+	
+	
+
+}

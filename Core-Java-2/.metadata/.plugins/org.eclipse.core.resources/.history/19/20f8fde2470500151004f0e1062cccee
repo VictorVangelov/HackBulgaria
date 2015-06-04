@@ -1,0 +1,35 @@
+package HddCrawler;
+
+public class Crawl {
+
+public synchronized void crawl(String filePath) {
+		
+		List<String> urls = Arrays.asList(new File(filePath).list()).stream()
+				.map(x -> String.format("%s/%s", filePath, x))
+				.collect(Collectors.toList());
+		
+		System.out.println(urls.size());
+
+//				.forEach(x -> {
+//					urls.add(x);
+//					System.out.println(x);
+//					System.out.println(urls.size());
+//					crawl(x);
+//				}
+		
+		for (String string : urls) {
+			System.out.println(string);
+//			crawl(Paths.get(string).toString());
+		}
+				
+	}
+
+	public static void main(String[] args) {
+		new Crawl().crawl("/home/stoilov");
+	}
+
+}
+	
+	
+	
+}

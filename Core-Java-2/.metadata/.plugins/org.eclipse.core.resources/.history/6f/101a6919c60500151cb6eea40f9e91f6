@@ -1,0 +1,9 @@
+package HddCrawler;
+
+import java.io.IOException;
+
+public class startingPathConfig {
+public static void main(String[] args) throws IOException {
+	String current = new java.io.File( "." ).getCanonicalPath();
+}
+}

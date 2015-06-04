@@ -1,0 +1,36 @@
+package HddCrawler;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+
+public class Crawl {
+
+	public void crawl(String filePath) {
+
+		Files.walk(Paths.get("/home/shosho/"))
+				.parallel().forEach(pathToFile ::FileTypeMatcher
+						.fillUnIndextedFileContainers(pathToFile));
+				.map(pathToFile -> );
+
+		
+
+		// .forEach(x -> {
+		// urls.add(x);
+		// System.out.println(x);
+		// System.out.println(urls.size());
+		// crawl(x);
+		// }
+
+		for (String string : urls) {
+			System.out.println(string);
+			// crawl(Paths.get(string).toString());
+		}
+
+	}
+
+	public static void main(String[] args) {
+		new Crawl().crawl("/home/sh0sh0");
+	}
+
+}

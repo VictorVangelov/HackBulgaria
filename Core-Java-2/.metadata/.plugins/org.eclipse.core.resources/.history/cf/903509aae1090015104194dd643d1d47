@@ -1,0 +1,59 @@
+package interviewTasks;
+
+import java.util.Arrays;
+
+public class QuickSort {
+	private int[] sortedArray;
+
+	public void sort(int[] unSortedArray) {
+		int lenght = unSortedArray.length;
+		if (lenght == 0 || unSortedArray == null) {
+			return;
+		} else {
+			this.sortedArray = unSortedArray;
+			quickSort(unSortedArray, 0, lenght - 1);
+		}
+	}
+
+	private void swap(int[] unSortedArray, int index1, int index2) {
+		int temp = unSortedArray[index1];
+		unSortedArray[index1] = unSortedArray[index2];
+		unSortedArray[index2] = temp;
+	}
+
+	private void quickSort(int[] unSortedArray, int first, int last) {
+		int i = first;
+		int j = last;
+		int pivot = unSortedArray[(first +( (last - first) / 2))];
+		while (i <= j) {
+			while (unSortedArray[i] < pivot) {
+				i++;
+			}
+			while (unSortedArray[j] > pivot) {
+				j--;
+			}
+			if (unSortedArray[i] > unSortedArray[j]) {
+				swap(unSortedArray, i, j);
+				i++;
+				j--;
+			}
+		}
+		if (first < j) {
+			quickSort(unSortedArray, first, j);
+		}
+		if (i < last) {
+			quickSort(unSortedArray, i, last);
+		}
+
+	}
+	public static void main(String[] args) {
+		int unsorted[] = {1,2,5,7,43,12,2,4,1241,4123,157,456,3453,4,3,6,7,12,444,5,345};
+		QuickSort sortAlgo = new QuickSort();
+		System.out.println(Arrays.toString(unsorted));
+		long startTime = System.currentTimeMillis();
+		sortAlgo.sort(unsorted);
+		long endTime = System.currentTimeMillis();
+		System.out.println(Arrays.toString(unsorted));
+		System.out.println((endTime-startTime)/1000);
+	}
+}

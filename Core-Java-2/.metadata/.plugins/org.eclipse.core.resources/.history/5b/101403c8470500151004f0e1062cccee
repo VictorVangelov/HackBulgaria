@@ -1,0 +1,35 @@
+package HddCrawler;
+
+public class FileTypeMatcher {
+private boolean isVideoFormat(String pathToFile){
+		
+		if (FileFormats.videoFormats.contains(pathToFile.substring(pathToFile.lastIndexOf('.'+1,pathToFile.length())))){
+			return true;
+		}
+			return false;
+	}
+	
+	
+	private boolean isTextFormat(String pathToFile){
+		
+		if (FileFormats.textFormats.contains(pathToFile.substring(pathToFile.lastIndexOf('.'+1,pathToFile.length())))){
+			return true;
+		}
+			return false;
+	}
+	private boolean isAudioFormat(String pathToFile){
+		
+		if (FileFormats.videoFormats.contains(pathToFile.substring(pathToFile.lastIndexOf('.'+1,pathToFile.length())))){
+			return true;
+		}
+			return false;
+	}
+	private boolean isImageFormat(String pathToFile){
+		
+		if (FileFormats.videoFormats.contains(pathToFile.substring(pathToFile.lastIndexOf('.'+1,pathToFile.length())))){
+			return true;
+		}
+			return false;
+	}
+
+}

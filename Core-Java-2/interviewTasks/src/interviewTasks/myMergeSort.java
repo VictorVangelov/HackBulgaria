@@ -1,0 +1,62 @@
+package interviewTasks;
+
+import java.util.Arrays;
+
+import javax.swing.text.DefaultEditorKit.CopyAction;
+
+public class myMergeSort {
+	private int[] inputArr;
+	private int[] tempMergeArr;
+	private int length;
+
+	public void sort(int[] inputArr) {
+		this.inputArr = inputArr;
+		this.length = inputArr.length;
+		this.tempMergeArr = new int[length];
+		doMergeSort(0, length - 1);
+	}
+
+	private void doMergeSort(int lower, int higher) {
+		if (lower < higher) {
+			int middle = (lower + (higher - lower) / 2);
+			doMergeSort(lower, middle);
+			doMergeSort(middle + 1, higher);
+			mergeParts(lower, middle, higher);
+		}
+	}
+
+	private void mergeParts(int lower, int middle, int higher) {
+		System.arraycopy(inputArr, 0, tempMergeArr, 0, length);
+		int i = lower;
+		int j = middle + 1;
+		int k = lower;
+		while (i <= middle && j <= higher) {
+			if (tempMergeArr[i] <= tempMergeArr[j]) {
+				inputArr[k] = tempMergeArr[i];
+				i++;
+			} else {
+				inputArr[k] = tempMergeArr[j];
+				j++;
+			}
+			k++;
+		}
+		while (i <= middle) {
+			inputArr[k] = tempMergeArr[i];
+			k++;
+			i++;
+		}
+	}
+
+	public static void main(String[] args) {
+		int[] inputArr = { 12, 4, 5, 12, 3, 5, 1541, 5123, 12, 3, 541, 5, 123,
+				123, 51, 5554, 332 };
+		myMergeSort sortAlgo = new myMergeSort();
+		System.out.println(Arrays.toString(inputArr));
+		long startTime = System.currentTimeMillis();
+		sortAlgo.sort(inputArr);
+		long endTime = System.currentTimeMillis();
+		System.out.println(Arrays.toString(inputArr));
+		System.out.println(endTime - startTime);
+
+	}
+}

@@ -1,0 +1,31 @@
+package interviewTasks;
+
+import java.util.ArrayList;
+import java.util.Stack;
+
+public class DFS {
+	public static void dfs(ArrayList<ArrayList<Integer>> graphRep, int start) {
+
+		Stack<Integer> myStack = new Stack<Integer>();
+		boolean[] visited = new boolean[graphRep.size()];
+		myStack.push(start);
+		while (!myStack.isEmpty()) {
+			int elem = myStack.pop();
+			if (!visited[elem]) {
+				visited[elem] = true;
+				Stack<Integer> externalStack = new Stack<Integer>();
+				for (int chield : graphRep.get(elem)) {
+					if (!visited[chield]) {
+						externalStack.push(chield);
+					}
+				}
+				while (!externalStack.isEmpty()) {
+				myStack.push(externalStack.pop());
+				}
+			}
+
+		}
+
+	}
+
+}

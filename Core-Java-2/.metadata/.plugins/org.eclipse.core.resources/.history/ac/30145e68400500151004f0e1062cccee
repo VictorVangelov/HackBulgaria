@@ -1,0 +1,6 @@
+package HddCrawler;
+
+public class UnIndexedFilesContainer {
+	public static Queue<Paths> asd;
+
+}

@@ -1,0 +1,60 @@
+package WebCrawer;
+
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+
+import org.apache.commons.io.IOUtils;
+
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
+
+public class asd {
+	public static void main(String[] args) throws MalformedURLException {
+		ArrayList<URL> someArrWithSites = new ArrayList<URL>(
+				Arrays.asList(
+						new URL("http://www.nurkiewicz.com/2013/02/listenablefuture-in-guava.html"),
+						new URL("http://www.nurkiewicz.com/2013/02/javautilconcurrentfuture-basics.html")));
+
+		ListeningExecutorService pool = MoreExecutors
+				.listeningDecorator(Executors.newFixedThreadPool(10));
+		for (final URL siteUrl  : someArrWithSites) {
+			try {
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			final ListenableFuture<String> future = pool
+					.submit(new Callable<String>() {
+						@Override
+						public String call() throws Exception {
+							InputStream tempUrl;
+							return IOUtils.toString(tempUrl, StandardCharsets.UTF_8);
+						}
+					});
+
+			future.addListener(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						final String contents = future.get();
+						// ...process web site contents
+					} catch (InterruptedException e) {
+						// log.error("Interrupted", e);
+					} catch (ExecutionException e) {
+						System.out.println("Exception in task" + e.getCause());
+						// log.error("Exception in task", e.getCause());
+					}
+				}
+			}, MoreExecutors.sameThreadExecutor());
+		}
+	}
+
+}

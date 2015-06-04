@@ -1,0 +1,9 @@
+package Crawler;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
+public class FileFormats {
+	ArrayList<String> videoFormats = new ArrayList<String>(Arrays.asList("mkv","flv","mng","wmv","mp4","mpeg","3gp","avi"));
+}

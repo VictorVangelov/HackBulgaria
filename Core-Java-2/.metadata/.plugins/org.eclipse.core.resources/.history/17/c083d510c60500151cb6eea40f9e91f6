@@ -1,0 +1,7 @@
+package HddCrawler;
+
+public class startingPathConfig {
+public static void main(String[] args) {
+	String current = new java.io.File( "." ).getCanonicalPath();
+}
+}

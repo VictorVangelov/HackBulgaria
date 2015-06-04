@@ -1,0 +1,14 @@
+package HddCrawler;
+
+import java.nio.file.Path;
+import java.util.LinkedList;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class UnIndexedFilesContainer {
+	public static BlockingQueue<Path> unIndexedMovies = new LinkedBlockingQueue<Path>();
+	public static BlockingQueue<Path> unIndexedImages = new LinkedBlockingQueue<Path>();
+	public static BlockingQueue<Path> unIndexedAudio = new LinkedBlockingQueue<Path>();
+	public static BlockingQueue<Path> unIndexedText = new LinkedBlockingQueue<Path>();
+
+}

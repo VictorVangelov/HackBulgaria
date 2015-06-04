@@ -1,0 +1,44 @@
+package demo.sphinx.helloworld;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.io.IOUtils;
+
+public class helloworldConfigChanger {
+	public static void main(String[] args) {
+		String content =getFileContent("/home/shosho/ProgrammingShits/HackBulgaria/Core-Java-2/fileRulerSpeach/src/demo/sphinx/helloworld/helloworld.config.xml");
+		String gramFileName = "asdasdasdasdasdasdasdasd";
+		replaceGramFile(content, gramFileName);
+	}
+
+	public static String getFileContent(String filePath) {
+		String content = new String();
+		try (FileInputStream stream = new FileInputStream(new File(filePath))) {
+			content = IOUtils.toString(stream, "UTF-8");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return content;
+	}
+
+	private static String replaceGramFile(String content, String gramFileName) {
+		//System.out.println(content);
+		String regex = "<property name=\"grammarName\" value=\"..*...*.*./>";
+		System.out.println(regex);
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(content);
+		if (matcher.find() == true) {
+			//System.out.println(matcher.group());
+			content.replace(content, gramFileName);
+		} else {
+			System.out.println("screw you");
+		}
+		// System.out.println(content.toString());
+		return content;
+	}
+
+}

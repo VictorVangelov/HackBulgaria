@@ -1,0 +1,12 @@
+package HddCrawler;
+
+import java.nio.file.Path;
+
+public class crawler {
+	
+	private int isVideoFormat(Path pathToFile){
+		if (FileFormats.videoFormats.contains(FilenameUtils.getExtension(pathToFile);)))
+			return F
+	}
+
+}

@@ -1,0 +1,26 @@
+package interviewTasks;
+
+import java.util.Arrays;
+
+public class BinarySearch {
+	public static void main(String[] args) {
+		int[] sortedArr = { 1, 3, 4, 5, 11, 15, 24, 26, 29 };
+		System.out.println(binarySearch(sortedArr, 4));
+
+	}
+
+	static boolean binarySearch(int[] arr, int someNum) {
+		while (arr.length > 1) {
+			int middle = (arr.length / 2) + 1;
+			if (someNum == arr[middle]) {
+				return true;
+			} else if (someNum < arr[middle]) {
+				binarySearch(Arrays.copyOfRange(arr, 0, middle), someNum);
+			} else if (someNum < arr[middle]) {
+				binarySearch(Arrays.copyOfRange(arr, middle, arr.length), someNum);
+			}
+
+		}
+		return false;
+	}
+}

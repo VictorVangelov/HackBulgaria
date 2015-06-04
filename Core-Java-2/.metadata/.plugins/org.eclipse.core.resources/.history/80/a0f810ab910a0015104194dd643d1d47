@@ -1,0 +1,24 @@
+package interviewTasks2;
+
+import java.util.ArrayList;
+
+public class QSort {
+
+	public static <T> void sort(ArrayList<T> inputArr) {
+		if (inputArr == null || inputArr.size() == 0) {
+			return;
+		}
+		quickSort(inputArr, 0, inputArr.size() - 1);
+	}
+
+	private static <T>void quickSort(ArrayList<T> inputArr, int lower, int higher){
+		if(lower<higher){
+			int i = lower;
+			int j = higher;
+			T x = inputArr[(i+j)/2];
+			do{
+				while
+			}
+		}
+	}
+}

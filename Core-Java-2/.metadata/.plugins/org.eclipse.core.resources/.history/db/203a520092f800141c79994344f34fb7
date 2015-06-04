@@ -1,9 +1,0 @@
-package CourseTasks;
-
-public class Bthread implements Runnable {
-	public synchronized void run() {
-		for (int i = 0; i < 2000000; i++) {
-			RaceCondition.c++;
-		}
-	}
-}

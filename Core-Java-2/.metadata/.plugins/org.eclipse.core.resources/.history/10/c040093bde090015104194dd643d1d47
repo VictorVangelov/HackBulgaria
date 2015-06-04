@@ -1,0 +1,9 @@
+package interviewTasks;
+
+public class QuickSort {
+
+	public void sort(int[] arr, int start, int end) {
+
+	}
+
+}

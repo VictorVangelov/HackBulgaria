@@ -1,0 +1,27 @@
+package demo.sphinx.helloworld;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class helloworldConfigChanger {
+	public static void main(String[] args) {
+		String content = "    <component name=\"jsgfGrammar\" type=\"edu.cmu.sphinx.jsapi.JSGFGrammar\">        <property name=\"dictionary\" value=\"dictionary\"/>        <property name=\"grammarLocation\"              value=\"resource:/demo.sphinx.helloworld.HelloWorld!/demo/sphinx/helloworld/\"/>        <property name=\"grammarName\" value=\"hello2\"/>	<property name=\"logMath\" value=\"logMath\"/>    </component>        ";
+		String gramFileName = "asdasdasdasdasdasdasdasd";
+		replaceGramFile(content, gramFileName);
+	}
+
+	private static String replaceGramFile(String content, String gramFileName) {
+		//"grammarName\" value=\"*\"/>
+		String regex = "<property name=";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(content);
+		if (matcher.find() == true) {
+			System.out.println(matcher.group(1));
+			content.replace(content, gramFileName);
+		}
+		else{System.out.println("screw you");}
+		//System.out.println(content.toString());
+		return content;
+	}
+
+}

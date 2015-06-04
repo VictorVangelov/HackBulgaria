@@ -1,0 +1,37 @@
+package WebCrawer;
+
+import java.util.concurrent.Executors;
+
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
+
+public class futureListnerRequestMaker {
+	public static void main(String[] args) {
+		ListeningExecutorService pool = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
+
+		for (final String siteUrl : WebCrawler.stillNotVisited) {
+		    final ListenableFuture<String> future = pool.submit(new Callable<String>() {
+		        @Override
+		        public String call() throws Exception {
+		            return IOUtils.toString(siteUrl, StandardCharsets.UTF_8);
+		        }
+		    });
+
+		    future.addListener(new Runnable() {
+		        @Override
+		        public void run() {
+		            try {
+		                final String contents = future.get();
+		                //...process web site contents
+		            } catch (InterruptedException e) {
+		                log.error("Interrupted", e);
+		            } catch (ExecutionException e) {
+		                log.error("Exception in task", e.getCause());
+		            }
+		        }
+		    }, MoreExecutors.sameThreadExecutor());
+		}
+	}
+
+}

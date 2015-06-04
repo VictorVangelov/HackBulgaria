@@ -1,6 +1,0 @@
-package CourseTasks;
-
-public class Counter {
-
-	int count = 0;
-}

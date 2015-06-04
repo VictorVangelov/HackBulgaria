@@ -1,0 +1,71 @@
+package asd;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.http.client.HttpResponseException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.google.gson.JsonObject;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+
+public class asd extends Thread {
+
+	static String name;
+	static Path path;
+	static URL url;
+	HashMap<String, Double> imaggaTags = new HashMap<String, Double>();
+	ArrayList<String> fileRulerTags = new ArrayList<String>();
+	JsonObject imaggaJSON;
+	static String defaultPicDBFolder = "/home/shosho/Downloads/FileRulerPicDB/";
+	String tag = "";
+	double temp = 0;
+	double confidencee;
+
+
+	public static void main(String[] args) throws IOException {
+		String asd = getImaggaResponce("asdsd");
+		System.out.println(asd);
+		
+	}
+
+	private static String getImaggaResponce(String url)
+			throws HttpResponseException, IOException {
+		url = "http://images.visitcanberra.com.au/images/canberra_hero_image.jpg";
+		String imaggaEndPoint = "http://api.imagga.com/v1/tagging?url=";
+		com.mashape.unirest.http.HttpResponse<String> response;
+		try {
+			response = Unirest
+					.get(imaggaEndPoint.concat(url))
+					.header("accept", "application/json")
+					.header("authorization",
+							"Basic YWNjX2YzYTVkYTc4N2ZmZTZmMDo0MmIwNWZhMTcwNjlhOGMzMDgwMjkyNDBkNjkwODU0Mw==")
+					.asString();
+			System.out.println(response.getBody());
+			return response.getBody();
+		} catch (UnirestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+
+	}
+
+
+	}

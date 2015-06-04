@@ -1,0 +1,18 @@
+package HddCrawler;
+
+import java.nio.file.Path;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.UnknownFormatConversionException;
+
+import org.apache.commons.io.FilenameUtils;
+
+public class crawler {
+
+	private Enum isVideoFormat(String pathToFile){
+		
+		if (FileFormats.videoFormats.contains(pathToFile.substring(pathToFile.lastIndexOf('.'+1,pathToFile.length())))){
+			UnIndexedFilesContainer.unIndexedMovies.add(pathToFile)
+		}
+			return F;
+	}
+}
